@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import style from './style.module.css'
 import { Routes, Route } from 'react-router-dom';
-
+import axios from 'axios';
 
 
 function App() {
@@ -13,6 +13,12 @@ function App() {
   const onclickHandler = () => {console.log('준비중 .....??')}
 
   const serverConnect = () => {console.log('')}
+
+  useEffect(() => {
+    axios.get('/api/test')
+      .then(res => console.log(res))
+      .catch()
+  })
 
 
   return (
