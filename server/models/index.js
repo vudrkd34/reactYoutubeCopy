@@ -32,6 +32,7 @@ let sequelize = new Sequelize(
     db.Cstmr = require('./test/sample')(sequelize, Sequelize);
     db.test1 = require('./test/test_video')(sequelize, Sequelize);
     db.test2 = require('./test/sample2')(sequelize, Sequelize);
+    db.user = require('./test/userTable')(sequelize,Sequelize);
 
     //db.test1.hasOne(db.test2);
 
