@@ -10,11 +10,18 @@ const io = require('socket.io')(server,{
 
 io.on('connection', socket=>{
     
-    socket.on("send message", (item) => {   //"send message"라는 이벤트 받음 (1) 
+      socket.on("send message", (item) => {   //"send message"라는 이벤트 받음 (1) 
         const message = "id : " + item.name + "//  message : " + item.msg;
         //console.log(message);
         io.emit("receive message", { name: item.name, msg: item.msg });  //"receive message"라는 이벤트 발생
       });
+
+      socket.on("send image", (item) => {   //"send message"라는 이벤트 받음 (1) 
+        const message = "id : " + item.name + "//  message : " + item.msg;
+        //console.log(message);
+        io.emit("receive image", { name: item.name, msg: item.msg });  //"receive message"라는 이벤트 발생
+      });
+
       socket.on("disconnect", function () {
         console.log("user disconnected: ", socket.id);
       });
