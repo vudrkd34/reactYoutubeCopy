@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Login from './pages/MemberLogin';
 import ChatRoom from './pages/Chat/ChatRoom';
 import Session from 'react-session-api';
+import VoiceChat from './pages/Chat/VoiceChat';
 
 
 
@@ -36,9 +37,13 @@ function App(props) {
     console.log("NickName : " + res.data.userId );
     setIsLogin(res.data.isLogin)
     setSessNickName(res.data.userId)
+
+
+    Session.set("NickName",res.data.userId);
+
   }
 
-  Session.set("nickname","test");
+ 
   /**
    * 
     슉.슉.슉.슉.슉.슉.슉.슉.슉.슉.슉.슉.
@@ -133,9 +138,10 @@ function App(props) {
     <section id="topMenu" style={{display:"flex"}} > 
     {/* <ul style={{listStyleType:"none"}}> */}
       <ul className={style.topMenuUI}>
-        <Link to="/">Home</Link>
-        <Link to="/???" onClick={onclickHandler}>???</Link>
-        <Link to="/chat" >ChatTest</Link>
+        <li style={{marginRight:'10px'}}><Link to="/">Home</Link></li>
+        <li style={{marginRight:'10px'}}><Link to="/???" onClick={onclickHandler}>???</Link></li>
+        <li style={{marginRight:'10px'}}><Link to="/chat" >ChatTest</Link></li>
+        <li style={{marginRight:'10px'}}><Link to="/voiceChat" >voiceChat</Link></li>
       </ul>
       <div className="myInfoArea">
         { isLogin ? <div> {sessionNickName}(로그아웃) </div> : <Link to="/login">로그인</Link>}
@@ -148,7 +154,9 @@ function App(props) {
       <Route path='/' element={<Home />} />
       <Route path='/login' element={<Login />} />
       <Route path='/chat' element={<ChatRoom />} />
+      <Route path='/voiceChat' element={<VoiceChat />} />
     </Routes>
+
 
     </>
   );
