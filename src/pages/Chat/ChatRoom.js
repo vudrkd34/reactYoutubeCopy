@@ -5,7 +5,7 @@ import ImageDropzone from './ImageDropZone';
 import Session from 'react-session-api';
 import style from '../../style.module.css';
 
-const socket = io.connect("http://192.168.0.155:3001");
+const socket = io.connect("http://192.168.0.71:3001");
 
 function ChatRoom(props) {
     const [selectedImage, setSelectedImage] = useState(null);

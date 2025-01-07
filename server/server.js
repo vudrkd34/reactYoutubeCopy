@@ -79,7 +79,7 @@ app.post("/login", (req, res) => { // 데이터 받아서 결과 전송
                         });
                         // db.query(`INSERT INTO logTable (created, username, action, command, actiondetail) VALUES (NOW(), ?, 'login' , ?, ?)`
                         //     , [req.session.nickname, '-', `React 로그인 테스트`], function (error, result) { });
-                        // 마이따 턴
+                        
                     }
                     else{                                   // 비밀번호가 다른 경우
                         sendData.isLogin = "로그인 정보가 일치하지 않습니다."

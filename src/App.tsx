@@ -12,8 +12,7 @@ import VoiceChat from './pages/Chat/VoiceChat';
 
 
 
-
-function App(props) {
+function App(props : any) {
   const [state,setState] = useState("");
   const [isLogin,setIsLogin] = useState("");
   const [sessionNickName,setSessNickName] = useState("");
@@ -23,7 +22,7 @@ function App(props) {
   useEffect(() => {
 
     //_getHello();
-    //_getAuth();
+    _getAuth();
     
   }, []);
 

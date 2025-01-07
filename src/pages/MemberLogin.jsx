@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-function Login({children}) {
+function Login() {
   const [id,setId] = useState("");
   const [password,setPassword] = useState("");
 

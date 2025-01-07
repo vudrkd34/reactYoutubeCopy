@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 
-function Home({children}) {
+function Home() {
     const [listData,setListData] = useState([{
         id : '',
         title : '',
