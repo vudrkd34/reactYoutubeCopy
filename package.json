@@ -43,6 +43,7 @@
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^1.0.0",
     "mini-css-extract-plugin": "^2.4.5",
+    "mongoose": "^8.9.3",
     "mysql2": "^3.10.3",
     "path": "^0.12.7",
     "postcss": "^8.4.4",

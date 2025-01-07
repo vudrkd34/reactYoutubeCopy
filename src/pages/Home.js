@@ -11,7 +11,7 @@ function Home({children}) {
       }])
 
       useEffect(() => {
-        _getData();
+        //_getData();
         
         
       }, []);

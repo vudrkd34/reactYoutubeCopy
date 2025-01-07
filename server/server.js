@@ -10,6 +10,8 @@ const session = require('express-session')
 const db = require('./lib/db');
 const bcrypt = require('bcrypt');
 
+
+
 sequelize.sync();
 
 app.use(bodyParser.urlencoded({ extended: false }))
