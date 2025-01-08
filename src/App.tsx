@@ -7,6 +7,7 @@ import Hello from './pages/Hello';
 import Home from './pages/Home';
 import Login from './pages/MemberLogin';
 import ChatRoom from './pages/Chat/ChatRoom';
+import ChatRoomList from './pages/Chat/ChatRoomList';
 import Session from 'react-session-api';
 import VoiceChat from './pages/Chat/VoiceChat';
 
@@ -21,15 +22,11 @@ function App(props : any) {
   
   useEffect(() => {
 
-    //_getHello();
     _getAuth();
     
   }, []);
 
-  async function _getHello() {
-    const res = await axios.get('/hello');
-    setState(res.data.hello );
-  }
+
 
   async function _getAuth() {
     const res = await axios.get('/auth');
@@ -64,7 +61,7 @@ function App(props : any) {
       <ul className={style.topMenuUI}>
         <li style={{marginRight:'10px'}}><Link to="/">Home</Link></li>
         <li style={{marginRight:'10px'}}><Link to="/???" onClick={onclickHandler}>???</Link></li>
-        <li style={{marginRight:'10px'}}><Link to="/chat" >ChatTest</Link></li>
+        <li style={{marginRight:'10px'}}><Link to="/chatList" >ChatRoom</Link></li>
         <li style={{marginRight:'10px'}}><Link to="/voiceChat" >voiceChat</Link></li>
       </ul>
       <div className="myInfoArea">
@@ -77,8 +74,9 @@ function App(props : any) {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/login' element={<Login />} />
-      <Route path='/chat' element={<ChatRoom />} />
+      <Route path='/chatList' element={<ChatRoomList />} />
       <Route path='/voiceChat' element={<VoiceChat />} />
+      <Route path='/chatRoom' element={<ChatRoom />} />
     </Routes>
 
 

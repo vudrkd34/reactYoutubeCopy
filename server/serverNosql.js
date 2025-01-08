@@ -29,9 +29,18 @@ const personInfoSchema = new mongoose.Schema({
     id : String ,
     password : String 
 },{collection:'test'});
+
   
 
 const Person = mongoose.model("test", personInfoSchema);
+
+const chatRoomSchema = new mongoose.Schema({
+    title: String,
+    passwordExist: Boolean ,
+    password : String,
+},{collection:'chatRoom'});
+
+const chatRoom = mongoose.model("chatRoom", chatRoomSchema);
 
 app.post("/login", (req, res) => { // 데이터 받아서 결과 전송
     const userId = req.body.userId;
@@ -89,6 +98,20 @@ app.get('/auth',(req,res) => {
     sendData.userId = req.session.nickname
 
     res.send(sendData);
+})
+
+app.get('/chatRoomList',(req,res) => {
+
+    chatRoom.find().then(data => {
+
+        //data.forEach((value,key,mapObj) => console.log(key + ' , '+ value.title));
+
+        res.send(data);
+
+        
+    });
+        
+
 })
   
 

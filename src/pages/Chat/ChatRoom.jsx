@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import axios from 'axios';
 import io from "socket.io-client";
 import ImageDropzone from './ImageDropZone';
@@ -8,6 +10,11 @@ import style from '../../style.module.css';
 const socket = io.connect("http://192.168.0.71:3001");
 
 function ChatRoom(props) {
+
+    const location = useLocation();
+
+    const history = createBrowserHistory();
+
     const [selectedImage, setSelectedImage] = useState(null);
     const [name, setName] = useState("");
     const [msg, setMsg] = useState("");
@@ -20,11 +27,15 @@ function ChatRoom(props) {
     const [preview, setPreview] = useState('/assets/test.png');
     const [image, setImage] = useState(null);
 
+    
+
     useEffect(() => {
+
         _getLoginExsit();
         setTestData("일단 TEST 로 set");
 
-        
+
+        //socket.emit('joinRoom', {roomName: location.state.roomId});
 
         const handleReceiveMessage = (message) => {
             setMessageList((prevMessages) => [...prevMessages, message]);
@@ -42,11 +53,22 @@ function ChatRoom(props) {
           setMessageList((prevMessages) => prevMessages.slice(1));
         }, 1000);
 
-      });
+        });
+
+        history.listen(({action}) => {
+
+            //alert("history변화 감지");
+            roomExit();
+
+        });
 
         return () => {
+
             socket.off('receive message', handleReceiveMessage);
+            
         };
+
+
     }, []);
 
 
@@ -54,9 +76,18 @@ function ChatRoom(props) {
         sendImg(newValue);
     };
 
+    const roomExit = (e) => {
+
+        socket.emit("roomExit", {
+            roomId : location.state.roomId
+        });
+
+    };
+
     const sendImg = (imageVal) => {
 
         socket.emit("send message", {
+            roomId : location.state.roomId,
             name: Session.get("NickName"),
             image: imageVal,
         });
@@ -81,11 +112,14 @@ function ChatRoom(props) {
         e.preventDefault();
 
         socket.emit("send message", {
+            roomId : location.state.roomId,
             name: sessionNickName,
             msg: msg,
         });
         setMsg("");
     };
+
+
 
     return (
         <div>
